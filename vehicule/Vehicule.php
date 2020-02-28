@@ -3,12 +3,51 @@
 
 abstract class Vehicule
 {
-    //----------------------------------------Vitessemax
     /**
      * @var int
      */
     private $vitessemax;
 
+    /**
+     * @var string
+     */
+    private $typecarburant;
+
+    /**
+     * @var int
+     */
+    private $contreservoir;
+
+    /**
+     * @var string
+     */
+    private $constructeur;
+
+    /**
+     * @var int
+     */
+    protected $vitesse=0;
+
+    //-------------------------Constructeur
+    /**
+     * Vehicule constructor.
+     * @param int $vitessemax
+     * @param string $typecarburant
+     * @param int $nombreroues
+     * @param int $contreservoir
+     * @param string $constructeur
+     */
+    public function __construct(int $vitessemax, string $typecarburant, int $contreservoir, string $constructeur)
+    {
+        $this->vitessemax = $vitessemax;
+        $this->typecarburant = $typecarburant;
+        $this->contreservoir = $contreservoir;
+        $this->constructeur = $constructeur;
+    }
+
+
+    //----------------------Getter&Setter
+//Vitessemax
     /**
      * @return string
      */
@@ -28,14 +67,7 @@ abstract class Vehicule
     }
 
 
-
-    //----------------------------------Carburant
-
-    /**
-     * @var string
-     */
-    private $typecarburant;
-
+//Carburant
     /**
      * @return string
      */
@@ -54,38 +86,8 @@ abstract class Vehicule
         return $this;
     }
 
-    //-----------------------------Nombrederoues
 
-    /**
-     * @var int
-     */
-    private $nombreroues;
-
-    /**
-     * @return int
-     */
-    public function getNombreroues(): int
-    {
-        return $this->nombreroues;
-    }
-
-    /**
-     * @param int $nombreroues
-     * @return Vehicule
-     */
-    public function setNombreroues(int $nombreroues): Vehicule
-    {
-        $this->nombreroues = $nombreroues;
-        return $this;
-    }
-
-    //--------------------------contreservoir
-
-    /**
-     * @var int
-     */
-    private $contreservoir;
-
+//contreservoir
     /**
      * @return int
      */
@@ -104,13 +106,7 @@ abstract class Vehicule
         return $this;
     }
 
-    //--------------------------Nom constructeur
-
-    /**
-     * @var string
-     */
-    private $constructeur;
-
+//Nom constructeur
     /**
      * @return string
      */
@@ -128,6 +124,28 @@ abstract class Vehicule
         $this->constructeur = $constructeur;
         return $this;
     }
+
+
+//Vitesse Max
+    /**
+     * @return int
+     */
+    public function getVitesse(): int
+    {
+        return $this->vitesse;
+    }
+
+    /**
+     * @param int $vitesse
+     * @return Vehicule
+     */
+    public function setVitesse(int $vitesse): Vehicule
+    {
+        $this->vitesse = $vitesse;
+        return $this;
+    }
+
+
 
 
 }

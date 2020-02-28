@@ -16,5 +16,43 @@
  * Gérer qu'on ne peut pas accélerer au delà de la vitesse max
  */
 
+require_once 'Vehicule.php';
+require_once 'Voiture.php';
+require_once 'Moto.php';
 
+$voiture1 = new Voiture(200, 'essence',150,'peugeot');
+$voiture2 = new Voiture(210, 'Diesel',150,'renault');
 
+echo $voiture1->getRoue();
+echo "<br>";
+echo $voiture1->getContreservoir();
+echo "<br>";
+echo $voiture1->getTypecarburant();
+echo "<br>";
+echo $voiture1->getConstructeur();
+echo "<br>";
+echo $voiture1->getVitessemax();
+
+echo'<br><br><br>';
+
+echo $voiture2->getRoue();
+echo "<br>";
+echo $voiture2->getContreservoir();
+echo "<br>";
+echo $voiture2->getTypecarburant();
+echo "<br>";
+echo $voiture2->getConstructeur();
+echo "<br>";
+echo $voiture2->getVitessemax();
+echo'<br><br><br>';
+
+$moto1 = new Moto(250,'essence', 50,'ducati');
+echo $moto1->getRoue();
+echo "<br>";
+echo $moto1->getContreservoir();
+echo "<br>";
+echo $moto1->getTypecarburant();
+echo "<br>";
+echo $moto1->getConstructeur();
+echo "<br>";
+echo $moto1->getVitessemax();
