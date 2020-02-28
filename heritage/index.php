@@ -4,6 +4,10 @@ require_once 'Chien.php';
 require_once 'Humain.php';
 require_once 'MaitreChien.php';
 require_once 'Maitre.php';
+require_once 'Siamois.php';
+
+
+
 //le constructeur avec un parametre et la méthode getNom()
 //viennent de la classe Animal dont hérite Chat
 $chat = new Chat('hercule');
@@ -73,5 +77,34 @@ $higgins = new Maitre();
 $zeus = new Chien();
 $higgins->setAnimal($zeus);
 
+$siamois = new Siamois();
+//Le nouveau siamois hérite bien de la classe siamois :
+var_dump($siamois instanceof Siamois);  // true
+//comme il hérite de chat :
+var_dump($siamois instanceof Chat); // true
+//Et comme chat hérite d'animal :
+var_dump($siamois instanceof Animal);// true
 
 
+//la méthode surchargée dans Chat "sePresenter" est plus prés de la classe Siamois
+// que la méthode sePresenter dans animal. C'est donc d'elle qu'hérite la classe Siamois.
+echo $siamois->sePresenter();
+
+
+//FATAL ERROR : la classe SiamoisAngora ne peut pas exister
+//car la classe Siamois dont elle hérite est déclarée finale.Elle ne peut donc pas avoir de
+//classe fille.
+//require_once 'SiamoisAngora.php';
+//$angora = new SiamoisAngora();
+echo "<br>";
+
+
+$siamois->setCouleurYeux('bleu');
+$siamois->direCouleurYeux();
+echo "<br><br>";
+$siamois->setLongeurPoils('courts');
+$siamois->direLongueurPoils();
+
+//fatal error : l'attribut est déclaré protégé et n'est pas
+//accéssible depuis un objet de la classe
+//echo $siamois->longeurPoils;
