@@ -19,6 +19,7 @@
 require_once 'Vehicule.php';
 require_once 'Voiture.php';
 require_once 'Moto.php';
+require_once 'Pompe.php';
 
 $voiture1 = new Voiture(200, 'essence',150,'peugeot');
 $voiture2 = new Voiture(210, 'Diesel',150,'renault');
@@ -32,18 +33,18 @@ echo "<br>";
 echo $voiture1->getConstructeur();
 echo "<br>";
 echo $voiture1->getVitessemax();
-
+echo "<br>";
+echo $voiture1->getVitesse();
+echo $voiture1->getContenu();
 echo'<br><br><br>';
 
-echo $voiture2->getRoue();
+$voiture1->accelerer(20);
+echo '<br>';
+$voiture1->accelerer(200);
 echo "<br>";
-echo $voiture2->getContreservoir();
-echo "<br>";
-echo $voiture2->getTypecarburant();
-echo "<br>";
-echo $voiture2->getConstructeur();
-echo "<br>";
-echo $voiture2->getVitessemax();
+echo $voiture1->getContenu();
+
+
 echo'<br><br><br>';
 
 $moto1 = new Moto(250,'essence', 50,'ducati');
@@ -56,3 +57,6 @@ echo "<br>";
 echo $moto1->getConstructeur();
 echo "<br>";
 echo $moto1->getVitessemax();
+
+echo'<br><br><br>';
+

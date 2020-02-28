@@ -28,6 +28,11 @@ abstract class Vehicule
      */
     protected $vitesse=0;
 
+    /**
+     * @var int
+     */
+    private $contenu;
+
     //-------------------------Constructeur
     /**
      * Vehicule constructor.
@@ -43,11 +48,12 @@ abstract class Vehicule
         $this->typecarburant = $typecarburant;
         $this->contreservoir = $contreservoir;
         $this->constructeur = $constructeur;
+        $this->contenu = $contreservoir;
     }
 
 
-    //----------------------Getter&Setter
-//Vitessemax
+    //----------------------Getter&Setter-----------------------------------------------------
+//Get&Set-Vitessemax--------------------------------------------------------------------------
     /**
      * @return string
      */
@@ -67,7 +73,7 @@ abstract class Vehicule
     }
 
 
-//Carburant
+//Get&Set-Carburant--------------------------------------------------------------------------
     /**
      * @return string
      */
@@ -87,7 +93,7 @@ abstract class Vehicule
     }
 
 
-//contreservoir
+//Get&Set-contreservoir-----------------------------------------------------------------------
     /**
      * @return int
      */
@@ -106,7 +112,7 @@ abstract class Vehicule
         return $this;
     }
 
-//Nom constructeur
+//Get&Set-NomConstructeur--------------------------------------------------------------------
     /**
      * @return string
      */
@@ -126,7 +132,7 @@ abstract class Vehicule
     }
 
 
-//Vitesse Max
+//Get&Set-Vitesse---------------------------------------------------------------------------
     /**
      * @return int
      */
@@ -135,14 +141,70 @@ abstract class Vehicule
         return $this->vitesse;
     }
 
+
     /**
      * @param int $vitesse
      * @return Vehicule
      */
     public function setVitesse(int $vitesse): Vehicule
     {
+        if($vitesse >= $this->vitessemax)
+        {
+            $this->vitesse = $this->vitessemax;
+            echo "La vitesse est a son maximum";
+            return $this;
+        }
+        if($this->contenu <= 0)
+        {
+            $this->vitesse = 0;
+            echo "on a plus d'essence Bordel !";
+        }
         $this->vitesse = $vitesse;
+        echo 'la voiture accelere sa vitesse est de : ' . $this->vitesse;
         return $this;
+    }
+
+
+//Get&Set-Contenu------------------------------------------------------------------------
+    /**
+     * @return int
+     */
+    public function getContenu(): int
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param int $contenu
+     * @return Vehicule
+     */
+    public function setContenu(int $contenu): Vehicule
+    {
+        if($contenu > $this->contreservoir)
+        {
+            $this->contenu = $this->contreservoir;
+            echo "le reservoir est plein";
+            return $this;
+        }
+        if($contenu <= 0)
+        {
+            $this->contenu = 0;
+            echo "Le reservoir est vide";
+            return $this;
+        }
+
+        $this->contenu = $contenu;
+        return $this;
+    }
+
+
+    //------------------------------------------------------------FUNCTION
+
+    public function accelerer(int $vitesseaccel)
+    {
+        $this->setVitesse($this->vitesse+$vitesseaccel);
+        $consactuel = ((10 * $this->vitesse) / 20);
+        $this->setContenu($this->contenu-$consactuel);
     }
 
 
