@@ -121,6 +121,15 @@ abstract class Vehicule
     }
 
     /**
+     * @param int $ajout
+     * @return Vehicule
+     */
+    public function addContenuReservoir(int $ajout): Vehicule
+    {
+        $this->setContenuReservoir($this->contenuReservoir + $ajout);
+        return $this;
+    }
+    /**
      * @return int
      */
     public function getVitesse(): int
@@ -135,6 +144,7 @@ abstract class Vehicule
     public function setVitesse(int $vitesse): Vehicule
     {
         if($vitesse>$this->vitesseMax){
+            trigger_error("impossible d'aller à plus de " .$this->vitesseMax . 'Km/h', E_USER_NOTICE);
             $vitesse = $this->vitesseMax;
         }
         $this->vitesse = $vitesse;
@@ -145,6 +155,33 @@ abstract class Vehicule
     {
         $this->setVitesse($this->vitesse + $acceleration);
     }
+
+    public function fairePlein(Pompe $pompe) //on type l'objet pompe pour etre sur de ce que l'on recoit
+    {
+        //contrôle des types de carburant
+        if($this->typeCarburant != $pompe->getTypeCarburant()){  //on passe par le getter car l'attribut est priver et non ne somme pas dans la classe Pompe
+            echo "oups, j'allais me tromper....";
+            return;
+        }
+        // définir la quantité d'essence nécéssaire pour faire le plein
+        $besoinEssence = $this->contenanceReservoir - $this->contenuReservoir;
+
+        //Si la pompe ne contient pas assez de carburant vis a vis de besoinEssence:
+        if ($besoinEssence > $pompe->getContenuCuve()){
+            //on redéfinit le besoin avec tout le contenu de la cuve
+            $besoinEssence = $pompe->getContenuCuve();
+        }
+        //ajouter cette quantité dans le reservoir du véhicule
+        $this->setContenuReservoir($this->contenuReservoir + $besoinEssence);
+        //ou en ajoutant la méthode addContenuReservoir:
+        //$this->addContenuReservoir($besoinEssence);
+        //soustraire cette quantité à la cuve de la pompe
+        $pompe->setContenuCuve($pompe->getContenuCuve() - $besoinEssence);
+    }
+
+
+
+    
     abstract public function getNBRoues():int;
 
 

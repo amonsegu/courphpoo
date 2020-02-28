@@ -1,7 +1,7 @@
 <?php
 require_once 'Vehicule.php';
 
- class Voiture
+ class Voiture extends Vehicule
 {
     const NB_ROUES = 4;
 

@@ -1,0 +1,78 @@
+php OO
+
+
+CLASS = sert de "moule"/"model" pour la cr�ation d'un objet
+	Par convention on les nommes en Pascalcase ex : class Employee{}
+	on y d�clare des "attributs" qui possede une VISIBILITE et une VALEUR 
+____________________________
+class Employe
+{
+ public $prenom = 'julien';
+private $salaire = 2000;
+}
+_____________________________
+
+
+
+Commentaires de documentation :
+/**   au dessus d'une variable renseigne son type
+
+
+Attribut public / priv�e
+
+L'orsqu'un attribut est d�finit en priv�e : nous pouvons y acc�der que 
+depuis une methode d�clar� au seins de la classe 
+Dans l'exemple suivant nous d�clarons une m�thode dans notre class Employe 
+qui a pour but d'acceder a l'attribut priv� $salaire
+
+-----------------------------------
+    public function getSalaire()
+    {
+        return $this->salaire;
+    }
+-----------------------------------
+autre methode ayant pour but d'augmenter le salaire:
+
+    public function augmenterSalaire($augmentation) 
+    {
+        $this->salaire += $augmentation;
+    }
+______________________________________
+
+rtrim & ltrim -> effectu un trim sur la droite ou la gauche 
+
+ex si la valeur a droite est vide il supprime l'espace existant:
+ 
+return rtrim($this->firstname . ' ' . $this->lastname);
+
+
+__________________________________________
+CONSTANTE:
+Constante ne bouge pas et est d�clar� 
+const TAUX_TVA = 20 ;
+
+STATIQUE:
+Un attribut statique peut etre modifier et peut �tre acc�der 
+directement depuis la classe
+public static $defautStatut = 'En cours';
+
+____________________________________________
+
+ABSTRACT
+
+Une classe abstraite est une classe que l'on ne peut pas 
+instancier elle ne sert QU'A etre h�rit�e
+
+
+_______________________________________________
+FINALE 
+une classe ou une m�thode d�clar�e finale ne pourrat pas avoir de classe fille 
+ou de m�thode surcharg�e en h�ritage
+_______________________________________________
+
+PROTECTED
+un attribut d�clar� prot�g� dans une classe est utilisable par les m�thodes de ses classes filles
+
+____________________________________________________
+PRIVATE
+un attribut priv�e est innac�ssible depuis les m�thodes de ses classe fille

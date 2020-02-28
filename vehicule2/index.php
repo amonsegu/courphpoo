@@ -18,9 +18,40 @@
 
 require_once 'Voiture.php';
 require_once 'Moto.php';
+require_once 'Pompe.php';
 
 
 $voiture = new Voiture(200, 'diesel', 80, 20);
 $moto = new Moto(220, 'essence', 40, 10);
 
 var_dump($voiture,$moto);
+
+$moto->accelerer(50);
+echo $moto->getVitesse();
+$moto->accelerer(70);
+echo '<br>' . $moto->getVitesse(); // on est a 120
+$moto->accelerer(300);
+echo '<br>' . $moto->getVitesse(); // plafoné a 220 = vitessemax
+
+$pompeEssence = new Pompe('essence', 800,200);
+$pompeDiesel = new Pompe('diesel', 1000, 600);
+
+echo'<br>Avant:<br>';
+var_dump($moto, $pompeEssence);
+$moto->fairePlein($pompeEssence);
+
+echo'<br>Apres:<br>';
+var_dump($moto, $pompeEssence);
+
+echo'<br>Avant:<br>';
+var_dump($voiture, $pompeEssence);
+$voiture->fairePlein($pompeEssence);
+
+echo'<br>Apres:<br>';
+var_dump($voiture, $pompeEssence);
+
+
+$petitePompe = new Pompe('diesel', 800,40);
+
+
+
