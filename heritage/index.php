@@ -34,3 +34,8 @@ $humain->carresser($chien);
 echo'<br>';
 $humain->carresser($chat);
 
+var_dump($chat instanceof chat); // true
+
+//parce que la classe Chat hérite d'animal:
+var_dump($chat instanceof Animal); // true
+
