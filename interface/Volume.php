@@ -3,5 +3,5 @@
 
 interface Volume
 {
-
+    public function getForme(): string;
 }
