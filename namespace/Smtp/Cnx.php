@@ -1,10 +1,10 @@
 <?php
-namespace Database;
+namespace Smtp;
 
 class Cnx
 {
     public function connect()
     {
-        echo 'Connexion à la bdd';
+        echo 'Connexion au serveur mail';
     }
 }
