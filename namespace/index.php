@@ -1,7 +1,10 @@
 <?php
+/*
 require_once 'Database/Cnx.php';
 require_once 'Smtp/Cnx.php';
-
+require_once 'Database/Postgresql/Adapter.php';
+*/
+require_once 'autoload.php';
 
 /*
  * Le nom complet de la classe Cnx
@@ -15,3 +18,5 @@ echo '<br>';
 
 $stmpCnx = new Smtp\Cnx();
 $stmpCnx->connect();
+
+$pgAdapter = new Database\Postgresql\Adapter();
