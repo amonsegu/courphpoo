@@ -1,8 +1,9 @@
 <?php
 
+use App\FlashMessage;
 use Model\Abonne;
 
-require_once 'autoload.php';
+require_once 'include/init.php';
 
 if(isset($_GET['id'])) { // modification si on a un ID dans le GET
     $abonne = Abonne::find($_GET['id']);
@@ -17,6 +18,8 @@ if (!empty($_POST)) {
 
     if ($abonne->validate($errors)) {
         $abonne->save();
+
+        FlashMessage::set("L'abonné est enregistré");
 
         header('Location: abonnes.php');
         die;

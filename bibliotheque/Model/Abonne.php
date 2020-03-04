@@ -70,6 +70,23 @@ class Abonne
 
     }
 
+    public function delete()
+    {
+        $pdo=Cnx::getInstance();
+        $query = 'DELETE FROM abonne WHERE id = ' . $this->id;
+        $pdo->exec($query);
+
+    }
+
+    public function hasEmprunts(): bool
+    {
+        $pdo = Cnx::getInstance();
+        $query = 'SELECT count(*)FROM emprunt wHERE id_abonne = ' . $this->id;
+        $stmt = $pdo->query($query);
+
+        return $stmt->fetchColumn() != 0;
+    }
+
     public function validate(array &$errors): bool
     {
         if (empty($this->prenom)) {

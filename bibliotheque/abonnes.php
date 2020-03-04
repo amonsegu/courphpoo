@@ -2,7 +2,8 @@
 
 use Model\Abonne;
 
-require_once 'autoload.php';
+require_once 'include/init.php';
+
 
 $abonnes = Abonne::findAll();
 
@@ -30,6 +31,10 @@ require 'layout/top.php';
                     <a href="abonne-edit.php?id=<?= $abonne->getId() ?>"
                        class="btn btn-primary">
                         Modifier
+                    </a>
+                    <a href="abonne-delete.php?id=<?= $abonne->getId() ?>"
+                       class ="btn btn-danger">
+                        Supprimer
                     </a>
                 </td>
             </tr>

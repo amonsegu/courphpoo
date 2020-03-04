@@ -26,3 +26,9 @@
     </nav>
     <div class="container">
 
+        <?php
+
+        use App\FlashMessage;
+
+        FlashMessage::display();
+        ?>
