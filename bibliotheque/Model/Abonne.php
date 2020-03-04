@@ -62,13 +62,12 @@ class Abonne
 
     public function save()
     {
-        $pdo = Cnx::getInstance();
+        if (is_null($this->id)){
+            $this->insert();
+        } else {
+            $this->update();
+        }
 
-        $query = 'INSERT INTO abonne(prenom) VALUES (:prenom)';
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-            ':prenom' => $this->prenom
-        ]);
     }
 
     public function validate(array &$errors): bool
@@ -80,6 +79,29 @@ class Abonne
         }
 
         return empty($errors);
+    }
+
+    private function insert()
+    {
+        $pdo = Cnx::getInstance();
+        $query = 'INSERT INTO abonne(prenom) VALUES (:prenom)';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            ':prenom' => $this->prenom
+        ]);
+
+    }
+
+    private function update()
+    {
+        $pdo = Cnx::getInstance();
+        $query = 'UPDATE abonne SET prenom = :prenom WHERE id = :id';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            ':prenom' => $this->prenom,
+            ':id' => $this->id
+        ]);
+
     }
 
     /**
@@ -112,8 +134,23 @@ class Abonne
         return $abonnes;
     }
 
-    public function find(int $id):?self
+    public static function find(int $id):?self
     {
+        $pdo = Cnx::getInstance();
 
+        $stmt = $pdo->query('SELECT * FROM abonne WHERE id = ' . $id);
+        $data = $stmt->fetch();
+
+        if (empty($data)){
+            return null;
+        }
+
+        $abonne = new self();
+
+        $abonne
+            ->setId($data['id'])
+            ->setPrenom($data['prenom']);
+
+        return $abonne;
     }
 }

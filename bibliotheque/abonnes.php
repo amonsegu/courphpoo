@@ -28,7 +28,7 @@ require 'layout/top.php';
                 <td><?= $abonne->getPrenom() ?></td>
                 <td>
                     <a href="abonne-edit.php?id=<?= $abonne->getId() ?>"
-                       class=""btn btn-primary">
+                       class="btn btn-primary">
                         Modifier
                     </a>
                 </td>
